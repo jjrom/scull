@@ -1,7 +1,7 @@
 {
   "name": "scull",
   "description": "scull server",
-  "version": "1.0",
+  "version": "1.0.0",
   "author": {
     "name": "Jérôme Gasperi",
     "email": "jerome.gasperi@gmail.com"

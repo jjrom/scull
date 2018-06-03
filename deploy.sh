@@ -79,7 +79,6 @@ then
 
 fi
 
-
 echo " ==> Clean directory ${SCULL_ENDPOINT}"
 rm -Rf "${SCULL_ENDPOINT}/server.js" "${SCULL_ENDPOINT}/config.js" "${SCULL_ENDPOINT}/package.json" "${SCULL_ENDPOINT}/app"
 
