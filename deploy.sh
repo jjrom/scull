@@ -96,7 +96,8 @@ module.exports = {
     port: ${SCULL_SERVER_NODE_PORT}
   },
   maxNumberOfProcesses:${MAX_NUMBER_OF_PROCESSES},
-  defaultEnv:${DEFAULT_ENV_STRING}
+  defaultEnv:${DEFAULT_ENV_STRING},
+  dbPath:'${SCULL_DB_FILE_PATH}'
 }
 " > ${SCULL_ENDPOINT}/config.js
 

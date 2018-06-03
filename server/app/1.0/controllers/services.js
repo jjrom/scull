@@ -7,7 +7,7 @@ module.exports = (function() {
 
   // Initialize datastore
   var db = new nedb({
-    filename: "scull.db",
+    filename: appConfig.dbPath,
     autoload: true
   });
 
