@@ -106,8 +106,8 @@ npm install
 
 if [ "${USE_PM2}" == "YES" ]
 then
-  echo " ==> Start pm2"
-  pm2 start ${SCULL_ENDPOINT}/server.js --name scull --no-pmx --merge-logs --log-date-format="YYYY-MM-DD HH:mm:ss"
+  echo " ==> Start pm2 on one instance"
+  pm2 start ${SCULL_ENDPOINT}/server.js -i 1 --name scull --no-pmx --merge-logs --log-date-format="YYYY-MM-DD HH:mm:ss"
 
   echo " ==> Save pm2"
   pm2 save
