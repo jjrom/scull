@@ -1,0 +1,20 @@
+{
+  "name": "scull",
+  "description": "scull server",
+  "version": "1.0",
+  "author": {
+    "name": "Jérôme Gasperi",
+    "email": "jerome.gasperi@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jjrom/scull.git"
+  },
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.0",
+    "nedb": "^1.8.0"
+  },
+  "license": "Apache-2.0"
+}

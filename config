@@ -1,0 +1,12 @@
+# Path on server where the files should be deployed
+SCULL_TARGET_DIR=/var/www/scull
+
+# REST API endpoint is http://localhost:{$SCULL_SERVER_NODE_PORT}/{$SCULL_VERSION_ENDPOINT}
+SCULL_SERVER_NODE_PORT=4002
+SCULL_VERSION_ENDPOINT=/1.0
+
+# Maximum number of parallels processes that can be launched by scull at the same time
+MAX_NUMBER_OF_PROCESSES=4
+
+# Default env array string to add to each docker processes (i.e. -e option)
+DEFAULT_ENV_STRING=[]
