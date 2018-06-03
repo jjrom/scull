@@ -174,7 +174,9 @@ module.exports = (function() {
     params.push('--rm', p.image);
     
     if ( p.args ) {
-      params.push(p.args);
+      for (var i = 0, ii = p.args.length; i < ii; i++) {
+        params.push(p.args[i]);
+      }
     }
 
     // Set status to running
