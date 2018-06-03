@@ -26,7 +26,9 @@ Then deploy scull with -p option
 
 ## Set up a nginx proxy
 
-scull runs on localhost only. To access scull REST API from internet, add this to /etc/nginx/sites-available/default file
+For security reason, scull is only available from localhost.
+
+To access scull REST API from internet you can you use nginx as a proxy by adding the following to  /etc/nginx/sites-available/default file
 
     location /scull/ {
 
@@ -41,3 +43,24 @@ scull runs on localhost only. To access scull REST API from internet, add this t
         proxy_cache_bypass $http_upgrade;
     }
    
+Then restart nginx
+
+    service nginx restart
+
+
+**Note** You should at least set up a basic authentication to protect the exposed API by adding a user/password
+
+    sudo sh -c "echo -n 'scull:' >> /etc/nginx/.htpasswd"
+    sudo sh -c "openssl passwd -apr1 >> /etc/nginx/.htpasswd"
+
+Then update the /etc/nginx/sites-available/default file by adding these lines at the beginning of the previous /scull/ entry
+
+        location /scull/ {
+
+            auth_basic "Restricted Content";
+            auth_basic_user_file /etc/nginx/.htpasswd;
+
+            [...]
+
+        }
+        
