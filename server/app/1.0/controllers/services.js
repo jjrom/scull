@@ -1,6 +1,6 @@
 const appConfig = require('../../../config');
 const nedb = require('nedb');
-const { spawn } = require('child_process');
+const child_process = require('child_process');
 
 module.exports = (function() {
   'use strict'
@@ -184,7 +184,7 @@ module.exports = (function() {
 
         console.log("[" + p._id + "][STARTED]");
 
-        var command = spawn('docker', params);
+        var command = child_process.spawn('docker', params);
 
         command.stdout.on('data', (data) => {
           console.log("[" + p._id + "][OUT]" + data);
