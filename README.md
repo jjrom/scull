@@ -33,9 +33,9 @@ To access scull REST API from internet you can you use nginx as a proxy by addin
     location /scull/ {
 
         # remove leading /scull/ otherwise node route is invalid
-        rewrite /scull/(.*) /\$1  break;
+        rewrite /scull/(.*) /$1  break;
 
-        proxy_pass http://127.0.0.1:4002;
+        proxy_pass http://127.0.0.1:4002/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
