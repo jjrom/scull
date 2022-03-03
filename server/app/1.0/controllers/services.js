@@ -1,5 +1,5 @@
 const appConfig = require('../../../config');
-const nedb = require('nedb');
+const nedb = require('@dills1220/nedb');
 const child_process = require('child_process');
 
 module.exports = (function() {
