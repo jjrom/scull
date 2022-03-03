@@ -85,6 +85,8 @@ DEFAULT_ENV_STRING=${DEFAULT_ENV_STRING}
 SCULL_DB_FILE_PATH=${SCULL_DB_FILE_PATH}
 EOF
 
+cd ${SCULL_PATH}
+
 echo " ==> Update node packages"
 npm install
 
