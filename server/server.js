@@ -18,6 +18,9 @@
 
 'use strict'
 
+// Read .env file at the root of the project
+require('dotenv').config()
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const config = require('./config');

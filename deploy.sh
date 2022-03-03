@@ -7,9 +7,11 @@
 #
 #
 
-PWD=`pwd`
+MY_PWD=`pwd`
 SRC_DIR=`pwd`
 USE_PM2=NO
+
+SCULL_PATH=./server
 
 function showUsage {
     echo ""
@@ -62,11 +64,6 @@ fi
 # Source config file
 . ${CONFIG}
 
-# Set endpoints
-SCULL_ENDPOINT=${SCULL_TARGET_DIR}
-
-mkdir -p "${SCULL_ENDPOINT}"
-
 # Use pm2 for startup
 if [ "${USE_PM2}" == "YES" ]
 then
@@ -74,47 +71,36 @@ then
     # First check if pm2 is 
     command -v pm2 >/dev/null 2>&1 || { echo >&2 "pm2 is needed but it's not installed.  Aborting."; exit 1; }
 
-    echo " ==> Stop pm2"
+    echo " ==> Stop scull"
     pm2 stop scull
 
 fi
 
-echo " ==> Clean directory ${SCULL_ENDPOINT}"
-rm -Rf "${SCULL_ENDPOINT}/server.js" "${SCULL_ENDPOINT}/config.js" "${SCULL_ENDPOINT}/package.json" "${SCULL_ENDPOINT}/app"
-
-cd "${SCULL_ENDPOINT}"
-
-echo " ==> Install new version on ${SCULL_ENDPOINT}"
-cp -R "${SRC_DIR}/server/server.js" "${SRC_DIR}/server/package.json" "${SRC_DIR}/server/app" "${SCULL_ENDPOINT}"
-
-echo " ==> Generate config.js file"
-cat <<< "
-module.exports = {
-  debug: true,
-  api: {
-    route: '${SCULL_VERSION_ENDPOINT}',
-    port: ${SCULL_SERVER_NODE_PORT}
-  },
-  maxNumberOfProcesses:${MAX_NUMBER_OF_PROCESSES},
-  defaultEnv:[${DEFAULT_ENV_STRING}],
-  dbPath:'${SCULL_DB_FILE_PATH}'
-}
-" > ${SCULL_ENDPOINT}/config.js
+echo -e "[INFO] Create ${SCULL_PATH}/.env from ${CONFIG}"
+cat > ${CONFIG} << EOF
+SCULL_VERSION_ENDPOINT=${SCULL_VERSION_ENDPOINT}
+SCULL_SERVER_NODE_PORT=${SCULL_SERVER_NODE_PORT}
+MAX_NUMBER_OF_PROCESSES=${MAX_NUMBER_OF_PROCESSES}
+DEFAULT_ENV_STRING=${DEFAULT_ENV_STRING}
+SCULL_DB_FILE_PATH=${SCULL_DB_FILE_PATH}
+EOF
 
 echo " ==> Update node packages"
 npm install
 
 if [ "${USE_PM2}" == "YES" ]
 then
+
   echo " ==> Start pm2 on one instance"
-  pm2 start ${SCULL_ENDPOINT}/server.js -i 1 --name scull --no-pmx --merge-logs --log-date-format="YYYY-MM-DD HH:mm:ss"
+  pm2 start ${SCULL_PATH}/server.js -i 1 --name scull --no-pmx --merge-logs --log-date-format="YYYY-MM-DD HH:mm:ss"
 
   echo " ==> Save pm2"
   pm2 save
+
 else
-  echo " ==> Go to ${SCULL_ENDPOINT} and run 'node server.js'"
+  echo " ==> Go to ${SCULL_PATH} and run 'node server.js'"
 fi
 
-cd "$PWD"
+cd "$MY_PWD"
 echo " Done !"
 
