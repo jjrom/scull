@@ -1,6 +1,6 @@
 # Path on server where the files should be deployed
-SCULL_TARGET_DIR=/var/www/scull
-SCULL_DB_FILE_PATH=/home/databases/scull.db
+SCULL_TARGET_DIR=./
+SCULL_DB_FILE_PATH=/data/scull.db
 
 # REST API endpoint is http://localhost:{$SCULL_SERVER_NODE_PORT}/{$SCULL_VERSION_ENDPOINT}
 SCULL_SERVER_NODE_PORT=4002
