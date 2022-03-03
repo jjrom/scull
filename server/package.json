@@ -1,7 +1,7 @@
 {
   "name": "scull",
   "description": "scull server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Jérôme Gasperi",
     "email": "jerome.gasperi@gmail.com"
@@ -14,7 +14,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.0",
-    "nedb": "^1.8.0"
+    "@dills1220/nedb": "^1.8.4"
   },
   "license": "Apache-2.0"
 }
