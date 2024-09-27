@@ -1,12 +1,13 @@
 module.exports = {
     debug: true,
     api: {
-      route: process.env.SCULL_VERSION_ENDPOINT,
-      port: process.env.SCULL_SERVER_NODE_PORT
+      route: "/1.0",
+      port: 4002
     },
-    maxNumberOfProcesses:process.env.MAX_NUMBER_OF_PROCESSES,
+    maxNumberOfProcesses:2,
     defaultEnv:[
-      process.env.DEFAULT_ENV_STRING
+      "ENV_VAR_1=123",
+      "ENV_VAR_2=456"
     ],
-    dbPath: process.env.SCULL_DB_FILE_PATH
+    dbPath: "/data/scull.db"
   }
